@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="body">
+
+    </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase.js"></script>
+<script !src="">
+    var firebaseConfig = {
+        apiKey: "AIzaSyATDweWn6chaktSKZ-oN6Q5flX3uPzOrro",
+        authDomain: "project-id.firebaseapp.com",
+        databaseURL: "https://project-id.firebaseio.com",
+        projectId: "react-tuto-firebase-c0a2a"
+    };
+    var defaultProject = firebase.initializeApp(firebaseConfig);
+    var db  = defaultProject.firestore();
+
+    db.collection("coronamaison").get().then((querySnapshot, a, b) => {
+        querySnapshot.forEach((doc) => {
+            var img = document.createElement('img');
+            img.src =
+                doc.data().url;
+            document.getElementById('body').appendChild(img);
+        });
+    });
+
+</script>
+<style>
+    img {
+        width: 48%;
+        margin: 1%;
+    }
+
+    #body {
+        margin: auto;
+        width: 80%;
+        background-color: #fff1c7;
+    }
+
+    body {
+        background-color: #95d0ff;
+    }
+</style>
+</html>
